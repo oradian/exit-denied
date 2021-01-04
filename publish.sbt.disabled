@@ -1,0 +1,18 @@
+import xerial.sbt.Sonatype._
+
+sonatypeProjectHosting := Some(GitHubHosting("oradian", "exit-denied", "marko.elezovic@oradian.com"))
+developers := Developer(id = "melezov", name = "Marko Elezovic", email = "marko.elezovic@oradian.com", url = url("https://github.com/melezov")) :: Nil
+
+licenses += (("MIT", url("https://opensource.org/licenses/MIT")))
+startYear := Some(2021)
+
+sonatypeProfileName := "com.oradian"
+publishMavenStyle := true
+
+publishTo := Some(
+  if (version.value endsWith "-SNAPSHOT") {
+    Opts.resolver.sonatypeSnapshots
+  } else {
+    Opts.resolver.sonatypeStaging
+  }
+)
